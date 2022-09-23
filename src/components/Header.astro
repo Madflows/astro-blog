@@ -1,0 +1,30 @@
+---
+import logo from "../images/logo.svg";
+---
+
+<header class="header bg-slate-900">
+    <div class="container flex items-center justify-between w-full">
+        <div class="logo">
+            <a href="/">
+                <img src={logo} class="w-[100px] md:w-[150px]" alt="" />
+            </a>
+        </div>
+        <nav>
+            <ul class="flex items-center justify-end gap-3 md:gap-4">
+                <li><a href="/">Home</a></li>
+                
+                <li><a href="/about">About</a></li>
+                <li><a href="/blog">Blog</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<style>
+    .header {
+        @apply py-4 md:py-6 px-2 sm:px-4 md:px-8;
+    }
+    a {
+        @apply text-slate-100;
+    }
+</style>
