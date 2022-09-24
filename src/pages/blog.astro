@@ -1,12 +1,25 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Showcase from "../components/Showcase.astro";
+import FeatureCard from "../components/FeatureCard.astro";
+
+const response = await fetch(`https://jsonplaceholder.typicode.com/posts?_limit=5`);
+const posts = await response.json();
+
 ---
+
 
 <Layout title="Blog - Learning Astro">
 	<Showcase heading="Blog" subtext="A simple blog made with Astro." />
 	<div class="page-content">
-		<div class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+		<h2>Posts</h2>
+		<div class="grid container grid-cols-1 md:grid-cols-2 gap-4">
+			{
+				posts.map((post) => {
+					<FeatureCard body={post.body} title={post.title} />
+				})
+			}
+		</div>
 	</div>
 </Layout>
 
