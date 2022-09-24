@@ -17,7 +17,7 @@ const posts = await Astro.glob('../posts/*.md')
 		<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
 			{
 				posts.map(post => (
-					<PostCard to={`/post/${post.frontmatter.slug}`} body={post.frontmatter.excerpt} title={post.frontmatter.title} />
+					<PostCard to={`/${post.frontmatter.slug}`} body={post.frontmatter.excerpt} title={post.frontmatter.title} />
 				))
 			}
 		</div>

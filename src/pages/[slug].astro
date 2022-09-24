@@ -1,0 +1,54 @@
+---
+import Card from "../components/Card.astro";
+import FeatureCard from "../components/FeatureCard.astro";
+import Layout from "../layouts/Layout.astro";
+
+export async function getStaticPaths() {
+  const posts = await Astro.glob("../posts/*.md");
+
+  return posts.map((post) => ({
+    params: {
+      slug: post.frontmatter.slug,
+    },
+    props: {
+      post,
+    },
+  }));
+}
+
+const { Content, frontmatter } = Astro.props.post;
+---
+
+<Layout title={`${frontmatter.title} - Astro Blog`}>
+  <section class="page-content">
+    <div class="container">
+      <Card>
+        <button class="bg-slate-100 rounded-md">
+          <a
+            href="/blog"
+            class="flex items-center justify-center gap-2 py-2 px-3"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+              class="w-5 h-5 stroke-current"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M17 10a.75.75 0 01-.75.75H5.612l4.158 3.96a.75.75 0 11-1.04 1.08l-5.5-5.25a.75.75 0 010-1.08l5.5-5.25a.75.75 0 111.04 1.08L5.612 9.25H16.25A.75.75 0 0117 10z"
+                clip-rule="evenodd"></path>
+            </svg>
+
+            <span>Back to Blog</span>
+          </a>
+        </button>
+        <h2>{frontmatter.title}</h2>
+        <div>
+            <small class="font-medium text-lg opacity-80">Written By <strong>{frontmatter.author}</strong> on {new Date(frontmatter.date).toLocaleDateString()}</small>
+        </div>
+        <Content />
+      </Card>
+    </div>
+  </section>
+</Layout>
