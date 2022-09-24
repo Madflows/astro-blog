@@ -11,7 +11,7 @@ export interface Props {
 const { heading, subtext, showExtra = false } = Astro.props as Props;
 ---
 
-<section class="showcase">
+<section class="bg-orange-600 showcase">
   <div class="showcase-text">
     <h1>{heading}</h1>
     <p>
@@ -22,29 +22,28 @@ const { heading, subtext, showExtra = false } = Astro.props as Props;
   {
     showExtra && (
       <>
+        <div class="flex items-center justify-center w-full pb-10 mx-auto">
+          <a href="#features">
+            <button class="flex items-center justify-center gap-2 px-4 py-3 rounded-md cursor-pointer bg-violet-50">
+              <span>Learn More</span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                class="w-5 h-5 stroke-current"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M10 3a.75.75 0 01.75.75v10.638l3.96-4.158a.75.75 0 111.08 1.04l-5.25 5.5a.75.75 0 01-1.08 0l-5.25-5.5a.75.75 0 111.08-1.04l3.96 4.158V3.75A.75.75 0 0110 3z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+            </button>
+          </a>
+        </div>
         <div class="showcase-img">
           <img class="logos" src={frameworkLogos} alt="" />
           <img class="logos-small" src={frameworkLogosSmall} alt="" />
-        </div>
-
-        <p class="showcase-demo"></p>
-        <div class="max-w-xs mx-auto text-purple-900 bg-white border-2 border-purple-900 rounded-md shadow-lg alert">
-          <div>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              class="flex-shrink-0 w-6 h-6 stroke-current"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-              />
-            </svg>
-            <span>This is a fake website.</span>
-          </div>
         </div>
       </>
     )
