@@ -20,6 +20,7 @@
     "tailwindcss": "^3.0.24"
   },
   "dependencies": {
+    "@astrojs/turbolinks": "^0.1.4",
     "daisyui": "^2.31.0"
   }
 }
