@@ -1,0 +1,84 @@
+---
+export interface Props {
+    activeColor?: string;
+    headings: string[];
+    contents: string[];
+}
+
+const {
+    headings = ["1", "2"],
+    contents,
+    activeColor = "#10b981",
+} = Astro.props as Props;
+---
+
+<div class="flex-col items-start tabs">
+    <ul class="w-full tabs-header">
+        {headings.map((heading) => <li>{heading}</li>)}
+    </ul>
+    <ul class="w-full tabs-content">
+        {
+            contents.map((content) => (
+                <li class="tabi">
+                    <code>{content}</code>
+                </li>
+            ))
+        }
+    </ul>
+</div>
+
+<style>
+    .tabs {
+        margin-top: 30px;
+    }
+
+    .tabs-header {
+        @apply text-white bg-slate-900 flex px-5 py-2.5 rounded-tl-sm rounded-tr-sm;
+    }
+
+    .tabs-header li {
+        margin-right: 20px;
+        cursor: pointer;
+    }
+
+    .tabs-content {
+        font-size: 18px;
+        padding: 20px;
+        @apply border border-slate-900 shadow-md bg-slate-200 rounded-br-md rounded-bl-md;
+        font-weight: bold;
+    }
+</style>
+
+<script define:vars={{ activeColor }}>
+    function createTabs(element) {
+        const header = element.querySelector(".tabs-header");
+        const content = element.querySelector(".tabs-content");
+        const tab_headers = [...header.children];
+        const tab_contents = [...content.children];
+        tab_contents.forEach((x) => (x.style.display = "none"));
+        let current_tab_index = -1;
+
+        function setTab(index) {
+            if (current_tab_index > -1) {
+                tab_headers[current_tab_index].style.fontWeight = 400;
+                tab_headers[current_tab_index].style.color = "#fff";
+                tab_contents[current_tab_index].style.display = "none";
+            }
+            tab_headers[index].style.fontWeight = 800;
+            tab_headers[index].style.color = activeColor;
+            tab_contents[index].style.display = "flex";
+            current_tab_index = index;
+        }
+
+        let default_tab_index = tab_headers.findIndex((x) => {
+            return [...x.classList].indexOf("default-tab") > -1;
+        });
+
+        default_tab_index = default_tab_index === -1 ? 0 : default_tab_index;
+        setTab(default_tab_index);
+        tab_headers.forEach((x, i) => (x.onclick = (event) => setTab(i)));
+    }
+
+    // Run
+    [...document.querySelectorAll(".tabs")].forEach((x) => createTabs(x));
+</script>
