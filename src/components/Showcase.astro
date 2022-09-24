@@ -27,11 +27,25 @@ const { heading, subtext, showExtra = false } = Astro.props as Props;
           <img class="logos-small" src={frameworkLogosSmall} alt="" />
         </div>
 
-        <p class="showcase-demo">
-          <small>
-            This is a demo website used for the YouTube crash course
-          </small>
-        </p>
+        <p class="showcase-demo"></p>
+        <div class="max-w-xs mx-auto text-purple-900 bg-white border-2 border-purple-900 rounded-md shadow-lg alert">
+          <div>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              class="flex-shrink-0 w-6 h-6 stroke-current"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
+            <span>This is a fake website.</span>
+          </div>
+        </div>
       </>
     )
   }
