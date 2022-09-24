@@ -2,6 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import Showcase from "../components/Showcase.astro";
 import FeatureCard from "../components/FeatureCard.astro";
+import PostCard from "../components/PostCard.astro";
 
 
 const posts = await Astro.glob('../posts/*.md')
@@ -13,12 +14,11 @@ const posts = await Astro.glob('../posts/*.md')
 	<Showcase heading="Blog" subtext="A simple blog made with Astro." />
 	<div class="page-content">
 		<div class="container">
-			<h2>Posts</h2>
 		<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
 			{
-				posts.map(post => {
-					<FeatureCard body={post.frontmatter.excerpt} title={post.frontmatter.title} />
-				})
+				posts.map(post => (
+					<PostCard to={`/post/${post.frontmatter.slug}`} body={post.frontmatter.excerpt} title={post.frontmatter.title} />
+				))
 			}
 		</div>
 		</div>
